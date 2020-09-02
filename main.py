@@ -1,13 +1,27 @@
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
 from typing import Optional
-from fastapi import FastAPI
+import json
+
+#
+# class Data(BaseModel):
+#     payload: Optional[dict] = Form
+
 
 app = FastAPI()
 
+
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def root_page():
+    return {"message": "welcome to my api"}
 
 
-@app.get("/test")
-def read_test():
-    return {"text": "this is a test"}
+@app.post("/slack")
+async def initial_slack_payload(request: Request):
+    form_data = await request.form()
+    print(form_data)
+    response_message = {
+      "response_type": "ephemeral",
+      "text": ":v: We have received your request and working on it. :v:"
+    }
+    return response_message
