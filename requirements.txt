@@ -1,6 +1,6 @@
 click==7.1.2
 fastapi==0.61.1
-h11==0.9.0
+h11==0.10.0
 pydantic==1.6.1
 python-multipart==0.0.5
 six==1.15.0
